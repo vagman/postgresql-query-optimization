@@ -6,6 +6,10 @@ record of the Positions table represents the specific position of the ship
 time t.
 */
 
+SELECT t as time_stamp, count(lon) as longtitude, count(lat) as latitude
+FROM positions
+GROUP BY time_stamp
+ORDER BY longtitude desc, latitude desc;
 
 
 /*
@@ -13,7 +17,10 @@ time t.
 type are registered to the database.
 */
 
-
+SELECT
+FROM 
+WHERE
+GROUP BY
 
 /*
 |Q3| Find which ships at one time developed a speed of over 30 knots, 
