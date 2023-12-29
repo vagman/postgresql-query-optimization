@@ -1,9 +1,11 @@
+CREATE DATABASE ais;
+
 DROP SCHEMA public CASCADE;
 CREATE SCHEMA public;
 
 CREATE TABLE vessel_types
 (
-    code NUMERIC(3,0),
+    code VARCHAR(3),
     description VARCHAR(60),
 
     PRIMARY KEY (code)
@@ -12,10 +14,10 @@ CREATE TABLE vessel_types
 CREATE TABLE vessels
 (
     id VARCHAR(64),
-    type NUMERIC(3,0),
-    flag VARCHAR(40),
+    type VARCHAR(3),
+    flag VARCHAR(30),
     
-    FOREIGN KEY (type) REFERENCES vessel_types(code) ON DELETE CASCADE,
+    FOREIGN KEY (type) REFERENCES vessel_types(code),
     PRIMARY KEY (id)
 );
 
@@ -30,7 +32,7 @@ CREATE TABLE positions
     course NUMERIC(4,1),
     speed NUMERIC(4,1),
 
-    FOREIGN KEY (vessel_id) REFERENCES vessels(id) ON DELETE CASCADE,
+    FOREIGN KEY (vessel_id) REFERENCES vessels(id),
 	PRIMARY KEY (id)
 );
 
