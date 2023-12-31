@@ -56,20 +56,19 @@ b) Which for the entire period
 */
 
 -- (a)
-SELECT P.t AS time_stamp, P.id AS anchored_vessel_id
+SELECT V.id as vessel_id, P.speed as stationary, V.type as cargo_vessels
 FROM positions AS P
 JOIN vessels AS V on P.vessel_id = V.id
 WHERE V.type::integer BETWEEN 70 and 79
 	AND P.speed = 0
-	AND P.t::date BETWEEN '2019-08-15' AND '2019-08-18'
+	AND P.t BETWEEN '2019-08-15' AND '2019-08-18'
+GROUP BY V.id, P.speed
 
 -- (b)
-
-SELECT P.id
+SELECT P.vessel_id as completely_stationary_vessels_betweeen_12_and_18_August2019
 FROM positions AS P
 JOIN vessels AS V on P.vessel_id = V.id
-JOIN vessel_types AS VT ON V.type = VT.code
 WHERE V.type::integer BETWEEN 70 and 79
-	AND P.speed = 0
-	AND '[2019-08-12, 2019-08-18]'::daterange @> P.t::date;
--- TODO: DO NOT use daterange/between. We need speed = 0 through the whole time 12-18/8/2019
+	AND P.t::date BETWEEN '2019-08-12' AND '2019-08-19'
+GROUP BY P.vessel_id
+HAVING MAX(P.speed) = 0;
