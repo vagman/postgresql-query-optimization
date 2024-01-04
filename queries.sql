@@ -32,7 +32,7 @@ SELECT type, count(V.type)
 FROM vessels AS V
 JOIN positions AS P ON V.id = P.vessel_id
 WHERE P.speed > 30
-GROUP BY type;
+GROUP BY V.type;
 
 /*
 |Q4| Especially for passenger ships ("passenger ..." types),
@@ -65,7 +65,7 @@ WHERE V.type::integer BETWEEN 70 and 79
 GROUP BY V.id, P.speed
 
 -- (b)
-SELECT P.vessel_id as completely_stationary_vessels_betweeen_12_and_18_August2019
+SELECT P.vessel_id as completely_stationary_vessels_between_12_and_18_August2019
 FROM positions AS P
 JOIN vessels AS V on P.vessel_id = V.id
 WHERE V.type::integer BETWEEN 70 and 79
