@@ -13,12 +13,11 @@ CREATE INDEX vessel_types_description_idx ON vessel_types(description);
 -- Q5A
 CREATE INDEX vessel_type_idx ON vessels(type);
 
-
 -- Show all the indexes that are created on a table:
 SELECT *
 FROM pg_indexes
 WHERE tablename = 'table_name';
 
--- Raughly monitor how long it will take to create an index
--- Open new Query Tool windows and execute the following:
+/* Raughly monitor how long it will take to create an index
+Open new Query Tool windows and execute the following: */
 SELECT * FROM pg_stat_progress_create_index 
