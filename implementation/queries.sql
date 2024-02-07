@@ -3,7 +3,7 @@
 sort the result in descending order (in terms of the number of
 positions). Clarification: the combination of lon, lat attributes in each
 record of the Positions table represents the specific position of the ship
-time t.
+time t
 */
 SELECT t::date as time_stamp, count(lon) as longtitude, count(lat) as latitude
 FROM positions
